@@ -1,0 +1,138 @@
+// Home page categories. `icon` paths are 24×24 SVG drawn as placeholder art;
+// set `image` on a subcategory to show a real photo instead.
+
+const icons = {
+  dress: 'M9 2h6l-1.5 5L18 20H6l4.5-13z',
+  shirt: 'M8 3l4 2 4-2 5 3-2 4-2-1v12H7V9l-2 1-2-4z',
+  tshirt: 'M8 3h8l5 3-2 4-2-1v12H7V9l-2 1-2-4z',
+  hoodie: 'M8 4a4 4 0 0 1 8 0l5 3-2 4-2-1v12H7V10l-2 1-2-4z',
+  pants: 'M7 2h10l1 20h-4l-2-12-2 12H6z',
+  sneaker: 'M2 15l3-7 4 2 3-1 3 3 6 1a1 1 0 0 1 1 1v2H2zM2 18h20v2H2z',
+  tube: 'M9 2h6v2H9zM8 4h8l-1 17H9z',
+  can: 'M10 2h4v3h-4zM8 6h8v15a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1z',
+  dropper: 'M11 1h2v5h-2zM10 6h4v3h-4zM8 9h8v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1z',
+  perfume: 'M10 2h4v4h-4zM6 7h12v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z',
+  blanket: 'M3 5h18v4H3zM3 10h18v4H3zM3 15h18v4H3z',
+  rug: 'M3 4h18v16H3zm3 3v10h12V7z',
+  candle: 'M12 1c1.5 2 1.5 3.5 0 5-1.5-1.5-1.5-3 0-5zM7 8h10v14H7z',
+  kettle: 'M8 2h6v3H8zM6 6h10l2 4v12H4V10zM19 11h1a2 2 0 0 1 0 4h-1z',
+  dumbbell: 'M2 10h2v4H2zM5 7h3v10H5zM16 7h3v10h-3zM20 10h2v4h-2zM8 11h8v2H8z',
+  jar: 'M8 2h8v3H8zM6 6h12v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1z',
+  pill: 'M8.5 3.5a5 5 0 0 1 7 7l-5 5a5 5 0 0 1-7-7z',
+  shaker: 'M8 2h8v3H8zM7 5h10l-1 17H8z',
+  onesie: 'M8 3h8l4 4-3 3-1-1v8l-4 4-4-4V9l-1 1-3-3z',
+  bottle: 'M10 2h4v3h-4zM9 6h6l1 3v11a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V9z',
+  block: 'M4 4h16v16H4zm4 4v8h8V8z',
+  stroller: 'M13 3a8 8 0 0 1 8 8h-8zM3 6h3l2 6h13a8 8 0 0 1-16 1zM6 18h4v4H6zM15 18h4v4h-4z',
+  snack: 'M6 2h12l-1 4 1 16H6l1-16z',
+  cup: 'M4 8h13v8a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h2a2 2 0 0 1 0 4h-2z',
+  sauce: 'M10 2h4v4h-4zM8 7h8l1 3v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V10z',
+  soda: 'M7 3h10v2H7zM6 6h12v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z',
+}
+
+export const categories = [
+  {
+    slug: 'women',
+    name: 'Women',
+    color: 'bg-stone-400',
+    icon: icons.dress,
+    subcategories: [
+      { slug: 'dresses', name: 'Dresses', color: 'bg-slate-500', icon: icons.dress },
+      { slug: 'shirts', name: 'Shirts', color: 'bg-stone-400', icon: icons.shirt },
+      { slug: 'sneakers', name: 'Sneakers', color: 'bg-red-700', icon: icons.sneaker },
+      { slug: 'pants', name: 'Pants', color: 'bg-sky-300', icon: icons.pants },
+    ],
+  },
+  {
+    slug: 'men',
+    name: 'Men',
+    color: 'bg-blue-800',
+    icon: icons.shirt,
+    subcategories: [
+      { slug: 'hoodies', name: 'Hoodies', color: 'bg-zinc-500', icon: icons.hoodie },
+      { slug: 'pants', name: 'Pants', color: 'bg-orange-700', icon: icons.pants },
+      { slug: 't-shirts', name: 'T-shirts', color: 'bg-rose-950', icon: icons.tshirt },
+      { slug: 'sneakers', name: 'Sneakers', color: 'bg-neutral-700', icon: icons.sneaker },
+    ],
+  },
+  {
+    slug: 'beauty',
+    name: 'Beauty',
+    color: 'bg-rose-700',
+    icon: 'M10 2h4v6h-4zM8 10h8v12H8z',
+    subcategories: [
+      {
+        slug: 'lotion',
+        name: 'Lotion & moisturizer',
+        color: 'bg-emerald-700/60',
+        icon: icons.tube,
+      },
+      {
+        slug: 'hair-styling',
+        name: 'Hair styling products',
+        color: 'bg-blue-700',
+        icon: icons.can,
+      },
+      { slug: 'anti-aging', name: 'Anti-aging kits', color: 'bg-blue-600', icon: icons.dropper },
+      { slug: 'perfume', name: 'Perfume & cologne', color: 'bg-stone-400', icon: icons.perfume },
+    ],
+  },
+  {
+    slug: 'home',
+    name: 'Home',
+    color: 'bg-green-700',
+    icon: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
+    subcategories: [
+      { slug: 'blankets', name: 'Blankets', color: 'bg-amber-300', icon: icons.blanket },
+      { slug: 'rugs', name: 'Rugs', color: 'bg-red-400', icon: icons.rug },
+      {
+        slug: 'home-fragrances',
+        name: 'Home fragrances',
+        color: 'bg-rose-300',
+        icon: icons.candle,
+      },
+      { slug: 'appliances', name: 'Household appliances', color: 'bg-red-900', icon: icons.kettle },
+    ],
+  },
+  {
+    slug: 'fitness-nutrition',
+    name: 'Fitness & nutrition',
+    color: 'bg-red-800',
+    icon: icons.dumbbell,
+    subcategories: [
+      {
+        slug: 'exercise-equipment',
+        name: 'Exercise equipment',
+        color: 'bg-orange-600',
+        icon: icons.dumbbell,
+      },
+      { slug: 'supplements', name: 'Supplements', color: 'bg-purple-800', icon: icons.jar },
+      { slug: 'vitamins', name: 'Vitamins', color: 'bg-green-700', icon: icons.pill },
+      { slug: 'drinks-shakes', name: 'Drinks & shakes', color: 'bg-amber-800', icon: icons.shaker },
+    ],
+  },
+  {
+    slug: 'baby-toddler',
+    name: 'Baby & toddler',
+    color: 'bg-amber-400',
+    icon: icons.bottle,
+    subcategories: [
+      { slug: 'clothing', name: 'Clothing', color: 'bg-sky-400', icon: icons.onesie },
+      { slug: 'feeding', name: 'Feeding', color: 'bg-amber-500', icon: icons.bottle },
+      { slug: 'toys', name: 'Toys', color: 'bg-teal-600', icon: icons.block },
+      { slug: 'strollers', name: 'Strollers', color: 'bg-indigo-500', icon: icons.stroller },
+    ],
+  },
+  {
+    slug: 'food-drinks',
+    name: 'Food & drinks',
+    color: 'bg-violet-300',
+    icon: 'M5 5h14l-2 15a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2zM14 1h2l-1.5 4h-2z',
+    subcategories: [
+      { slug: 'snacks', name: 'Snacks', color: 'bg-yellow-500', icon: icons.snack },
+      { slug: 'coffee-tea', name: 'Coffee & tea', color: 'bg-yellow-900', icon: icons.cup },
+      { slug: 'pantry', name: 'Pantry', color: 'bg-lime-700', icon: icons.sauce },
+      { slug: 'drinks', name: 'Drinks', color: 'bg-fuchsia-700', icon: icons.soda },
+    ],
+  },
+]

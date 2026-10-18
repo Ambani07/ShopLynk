@@ -56,7 +56,7 @@ onUnmounted(() => clearInterval(timer))
 
 <template>
   <section
-    class="relative overflow-hidden bg-neutral-50 pt-24 pb-20"
+    class="relative overflow-hidden bg-canvas pt-8 pb-4 md:pb-14"
     aria-label="Featured products"
     @mouseenter="paused = true"
     @mouseleave="paused = false"

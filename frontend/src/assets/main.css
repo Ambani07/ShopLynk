@@ -1,1 +1,9 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-canvas: #fbfbfb;
+}
+
+body {
+  background-color: var(--color-canvas);
+}
