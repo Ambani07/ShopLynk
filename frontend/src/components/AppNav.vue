@@ -33,7 +33,7 @@ const items = [
 </script>
 
 <template>
-  <header class="sticky top-0 z-10 border-b border-gray-200 bg-neutral-50">
+  <header class="sticky top-0 z-10 border-b border-gray-200 bg-canvas">
     <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
       <RouterLink to="/" aria-label="SupLynk home" class="shrink-0">
         <img src="/suplynk-icon-transparent.png" alt="" class="h-9 w-auto md:hidden" />
