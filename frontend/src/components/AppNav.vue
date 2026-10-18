@@ -60,7 +60,7 @@ const items = [
 
       <RouterLink
         to="/sign-in"
-        class="flex shrink-0 items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-gray-600"
+        class="flex shrink-0 flex-col items-center gap-0.5 text-xs text-gray-400 transition-colors hover:text-gray-600"
       >
         <svg viewBox="0 0 24 24" class="size-8" fill="currentColor">
           <path
