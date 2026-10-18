@@ -35,18 +35,9 @@ const items = [
 <template>
   <header class="sticky top-0 z-10 border-b border-gray-200 bg-neutral-50">
     <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-      <RouterLink to="/" aria-label="ShopLynk home" class="shrink-0 text-violet-600">
-        <svg
-          viewBox="0 0 24 24"
-          class="size-8"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3.5"
-          stroke-linecap="round"
-        >
-          <path d="M13 4.1A8 8 0 1 0 20 12" />
-          <path d="M16 12a4 4 0 1 1-4-4" />
-        </svg>
+      <RouterLink to="/" aria-label="SupLynk home" class="shrink-0">
+        <img src="/suplynk-icon-transparent.png" alt="" class="h-9 w-auto md:hidden" />
+        <img src="/suplynk-logo-transparent.png" alt="" class="hidden h-8 w-auto md:block" />
       </RouterLink>
 
       <nav class="hidden items-center gap-10 md:flex">
