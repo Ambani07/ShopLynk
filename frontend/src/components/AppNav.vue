@@ -33,7 +33,7 @@ const items = [
 </script>
 
 <template>
-  <header class="sticky top-0 z-10 border-b border-gray-200 bg-canvas">
+  <header class="sticky top-0 z-40 border-b border-gray-200 bg-canvas">
     <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
       <RouterLink to="/" aria-label="SupLynk home" class="shrink-0">
         <img src="/suplynk-icon-transparent.png" alt="" class="h-9 w-auto md:hidden" />
@@ -73,7 +73,7 @@ const items = [
   </header>
 
   <nav
-    class="fixed inset-x-0 bottom-0 z-10 border-t border-gray-200 bg-white/90 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_16px_rgba(0,0,0,0.04)] backdrop-blur md:hidden"
+    class="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/90 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_16px_rgba(0,0,0,0.04)] backdrop-blur md:hidden"
   >
     <ul class="grid h-20 grid-cols-5">
       <li v-for="item in items" :key="item.to">
