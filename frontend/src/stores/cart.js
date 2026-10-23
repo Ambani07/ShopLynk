@@ -8,12 +8,15 @@ export const itemTotal = (item) => (item.price - (item.discount ?? 0)) * item.qu
 export const useCartStore = defineStore('cart', () => {
   const items = ref(cartItems.map((item) => ({ ...item })))
   const saved = ref([])
+  // Shops by slug; grows as items from other shops are added.
+  const shopIndex = ref({ ...shops })
 
   // Items grouped by shop, in the order each shop was first added.
   const shopGroups = computed(() => {
     const groups = new Map()
     for (const item of items.value) {
-      if (!groups.has(item.shop)) groups.set(item.shop, { shop: shops[item.shop], items: [] })
+      if (!groups.has(item.shop))
+        groups.set(item.shop, { shop: shopIndex.value[item.shop], items: [] })
       groups.get(item.shop).items.push(item)
     }
     return [...groups.values()].map((group) => ({
@@ -34,6 +37,15 @@ export const useCartStore = defineStore('cart', () => {
     if (quantity < 1) return remove(id)
     const item = items.value.find((item) => item.id === id)
     if (item) item.quantity = quantity
+  }
+
+  // Adds an item from `shop`, or bumps its quantity if it's already in the cart.
+  const addItem = (item, shop) => {
+    shopIndex.value[shop.slug] ??= shop
+    const quantity = item.quantity ?? 1
+    const existing = items.value.find((entry) => entry.id === item.id)
+    if (existing) existing.quantity += quantity
+    else items.value.push({ ...item, shop: shop.slug, quantity })
   }
 
   const remove = (id) => take(items.value, id)
@@ -57,6 +69,7 @@ export const useCartStore = defineStore('cart', () => {
     count,
     total,
     setQuantity,
+    addItem,
     remove,
     saveForLater,
     moveToCart,
