@@ -12,7 +12,7 @@ const artPositions = [
 </script>
 
 <template>
-  <section class="mx-auto max-w-[110rem] pt-8 pb-16" aria-labelledby="explore-heading">
+  <section class="mx-auto max-w-[110rem] pt-8 pb-6" aria-labelledby="explore-heading">
     <h1 id="explore-heading" class="text-center text-3xl font-bold tracking-tight text-gray-900">
       Explore
     </h1>
