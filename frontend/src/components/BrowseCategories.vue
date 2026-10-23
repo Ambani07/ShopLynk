@@ -4,7 +4,7 @@ import { browseCategories } from '@/data/explore'
 </script>
 
 <template>
-  <section class="mx-auto max-w-[110rem] px-4 pb-16 md:px-10" aria-labelledby="browse-heading">
+  <section class="mx-auto max-w-[110rem] px-4 pb-6 md:px-10" aria-labelledby="browse-heading">
     <h2 id="browse-heading" class="text-xl font-bold tracking-tight text-gray-900">
       Browse categories
     </h2>
