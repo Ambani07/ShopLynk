@@ -1,23 +1,14 @@
 <script setup>
-import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import CartItem from './CartItem.vue'
+import ShopAvatar from './ShopAvatar.vue'
 import { formatCount, formatPrice } from '@/utils/format'
 
-const props = defineProps({
+defineProps({
   shop: { type: Object, required: true },
   items: { type: Array, required: true },
   subtotal: { type: Number, required: true },
 })
-
-// Placeholder logo: the shop's initials.
-const initials = computed(() =>
-  props.shop.name
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join(''),
-)
 </script>
 
 <template>
@@ -26,22 +17,7 @@ const initials = computed(() =>
     :aria-label="`${shop.name} cart`"
   >
     <header class="flex items-center gap-3">
-      <img
-        v-if="shop.logo"
-        :src="shop.logo"
-        alt=""
-        class="size-12 rounded-full object-cover ring-1 ring-black/5"
-      />
-      <span
-        v-else
-        :class="[
-          'flex size-12 items-center justify-center rounded-full text-sm font-bold text-white',
-          shop.color,
-        ]"
-        aria-hidden="true"
-      >
-        {{ initials }}
-      </span>
+      <ShopAvatar :shop="shop" />
       <div>
         <RouterLink :to="`/shops/${shop.slug}`" class="font-semibold text-gray-900 hover:underline">
           {{ shop.name }}

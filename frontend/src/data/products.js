@@ -5,7 +5,7 @@ import { icons } from './categories'
 import { browseCategories } from './explore'
 
 // Placeholder tile colours: [background, icon]. Full class names so Tailwind picks them up.
-const tints = {
+export const tints = {
   orange: ['bg-orange-50', 'text-orange-300'],
   amber: ['bg-amber-50', 'text-amber-300'],
   yellow: ['bg-yellow-50', 'text-yellow-300'],
