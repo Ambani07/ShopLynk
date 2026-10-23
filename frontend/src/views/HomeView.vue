@@ -1,8 +1,10 @@
 <script setup>
+import BrandCarousel from '@/components/BrandCarousel.vue'
 import CategoryChips from '@/components/CategoryChips.vue'
 import CategoryGrid from '@/components/CategoryGrid.vue'
 import HeroShowcase from '@/components/HeroShowcase.vue'
 import HomeSearch from '@/components/HomeSearch.vue'
+import { brandSections } from '@/data/brands'
 </script>
 
 <template>
@@ -20,5 +22,13 @@ import HomeSearch from '@/components/HomeSearch.vue'
       <CategoryChips />
     </div>
     <CategoryGrid />
+    <BrandCarousel
+      v-for="section in brandSections"
+      :key="section.slug"
+      :title="section.title"
+      :slug="section.slug"
+      :brands="section.brands"
+      class="last:pb-16"
+    />
   </main>
 </template>
