@@ -4,12 +4,17 @@ import { RouterLink } from 'vue-router'
 import { formatCount, formatPrice } from '@/utils/format'
 
 const props = defineProps({
-  // { slug, brand, name, rating, reviews, price, image?, icon, background, accent }
+  // { slug, name, price, icon, background, accent,
+  //   brand?, rating?, reviews?, originalPrice?, image? }
   product: { type: Object, required: true },
 })
 
 const formattedPrice = computed(() => formatPrice(props.product.price))
 const formattedReviews = computed(() => formatCount(props.product.reviews))
+const percentOff = computed(() => {
+  const { price, originalPrice } = props.product
+  return originalPrice > price ? Math.round((1 - price / originalPrice) * 100) : 0
+})
 
 const star = 'M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.6z'
 </script>
@@ -42,13 +47,19 @@ const star = 'M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.
         >
           <path :d="product.icon" />
         </svg>
+        <span
+          v-if="percentOff"
+          class="absolute top-2.5 left-2.5 rounded-full bg-gray-900 px-2 py-0.5 text-xs font-semibold text-white"
+        >
+          {{ percentOff }}% off
+        </span>
       </div>
 
       <div class="mt-3 px-1">
-        <p class="truncate text-xs text-gray-600">{{ product.brand }}</p>
+        <p v-if="product.brand" class="truncate text-xs text-gray-600">{{ product.brand }}</p>
         <h3 class="truncate text-sm font-semibold text-gray-900">{{ product.name }}</h3>
 
-        <div class="mt-0.5 flex items-center gap-1.5 text-xs text-gray-600">
+        <div v-if="product.rating" class="mt-0.5 flex items-center gap-1.5 text-xs text-gray-600">
           <!-- Grey stars underneath, filled stars clipped to the rating on top -->
           <span
             class="relative inline-flex"
@@ -78,7 +89,12 @@ const star = 'M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.
           <span>({{ formattedReviews }})</span>
         </div>
 
-        <p class="mt-1 text-sm text-gray-900">{{ formattedPrice }}</p>
+        <p class="mt-1 text-sm text-gray-900">
+          {{ formattedPrice }}
+          <span v-if="percentOff" class="ml-1 text-gray-500 line-through">
+            {{ formatPrice(product.originalPrice) }}
+          </span>
+        </p>
       </div>
     </RouterLink>
   </article>
