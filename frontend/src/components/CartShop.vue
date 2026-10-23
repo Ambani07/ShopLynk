@@ -22,7 +22,9 @@ defineProps({
         <RouterLink :to="`/shops/${shop.slug}`" class="font-semibold text-gray-900 hover:underline">
           {{ shop.name }}
         </RouterLink>
-        <p class="text-xs text-gray-700">{{ shop.rating }} ★ ({{ formatCount(shop.reviews) }})</p>
+        <p v-if="shop.rating" class="text-xs text-gray-700">
+          {{ shop.rating }} ★ ({{ formatCount(shop.reviews) }})
+        </p>
       </div>
     </header>
 
