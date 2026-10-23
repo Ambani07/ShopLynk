@@ -1,17 +1,15 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { formatCount, formatPrice } from '@/utils/format'
 
 const props = defineProps({
   // { slug, brand, name, rating, reviews, price, image?, icon, background, accent }
   product: { type: Object, required: true },
 })
 
-const price = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-const count = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 })
-
-const formattedPrice = computed(() => price.format(props.product.price))
-const formattedReviews = computed(() => count.format(props.product.reviews).toLowerCase())
+const formattedPrice = computed(() => formatPrice(props.product.price))
+const formattedReviews = computed(() => formatCount(props.product.reviews))
 
 const star = 'M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.6z'
 </script>
