@@ -1,7 +1,9 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 const route = useRoute()
+const auth = useAuthStore()
 
 const items = [
   {
@@ -58,7 +60,23 @@ const items = [
         </RouterLink>
       </nav>
 
+      <button
+        v-if="auth.user"
+        type="button"
+        title="Sign out"
+        class="flex shrink-0 flex-col items-center gap-0.5 text-xs text-gray-700 transition-colors hover:text-gray-900"
+        @click="auth.signOut()"
+      >
+        <span
+          class="flex size-8 items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white"
+          aria-hidden="true"
+        >
+          {{ auth.user.name.charAt(0).toUpperCase() }}
+        </span>
+        <span>Sign out</span>
+      </button>
       <RouterLink
+        v-else
         to="/sign-in"
         class="flex shrink-0 flex-col items-center gap-0.5 text-xs text-gray-400 transition-colors hover:text-gray-600"
       >
@@ -67,7 +85,6 @@ const items = [
             d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
           />
         </svg>
-        <span>Sign in</span>
       </RouterLink>
     </div>
   </header>
