@@ -1,7 +1,7 @@
 // Home page categories. `icon` paths are 24×24 SVG drawn as placeholder art;
 // set `image` on a subcategory to show a real photo instead.
 
-const icons = {
+export const icons = {
   dress: 'M9 2h6l-1.5 5L18 20H6l4.5-13z',
   shirt: 'M8 3l4 2 4-2 5 3-2 4-2-1v12H7V9l-2 1-2-4z',
   tshirt: 'M8 3h8l5 3-2 4-2-1v12H7V9l-2 1-2-4z',
