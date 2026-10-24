@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import StarRating from './StarRating.vue'
 import { formatCount, formatPrice } from '@/utils/format'
 
 const props = defineProps({
@@ -15,8 +16,6 @@ const percentOff = computed(() => {
   const { price, originalPrice } = props.product
   return originalPrice > price ? Math.round((1 - price / originalPrice) * 100) : 0
 })
-
-const star = 'M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.6z'
 </script>
 
 <template>
@@ -60,32 +59,7 @@ const star = 'M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.
         <h3 class="truncate text-sm font-semibold text-gray-900">{{ product.name }}</h3>
 
         <div v-if="product.rating" class="mt-0.5 flex items-center gap-1.5 text-xs text-gray-600">
-          <!-- Grey stars underneath, filled stars clipped to the rating on top -->
-          <span
-            class="relative inline-flex"
-            role="img"
-            :aria-label="`${product.rating} out of 5 stars`"
-          >
-            <span class="flex text-gray-300">
-              <svg v-for="i in 5" :key="i" viewBox="0 0 24 24" class="size-3.5" fill="currentColor">
-                <path :d="star" />
-              </svg>
-            </span>
-            <span
-              class="absolute inset-y-0 left-0 flex overflow-hidden text-gray-900"
-              :style="{ width: `${(product.rating / 5) * 100}%` }"
-            >
-              <svg
-                v-for="i in 5"
-                :key="i"
-                viewBox="0 0 24 24"
-                class="size-3.5 shrink-0"
-                fill="currentColor"
-              >
-                <path :d="star" />
-              </svg>
-            </span>
-          </span>
+          <StarRating :rating="product.rating" />
           <span>({{ formattedReviews }})</span>
         </div>
 
