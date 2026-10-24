@@ -1,4 +1,10 @@
-const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+// Prices are South African Rand, written the South African way.
+const currency = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' })
+const wholeCurrency = new Intl.NumberFormat('en-ZA', {
+  style: 'currency',
+  currency: 'ZAR',
+  maximumFractionDigits: 0,
+})
 const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 })
 const longDate = new Intl.DateTimeFormat('en-US', {
   month: 'short',
@@ -11,8 +17,11 @@ const shortDate = new Intl.DateTimeFormat('en-US', {
   day: 'numeric',
 })
 
-// 149 → "$149.00"
+// 1234.5 → "R 1 234,50"
 export const formatPrice = (amount) => currency.format(amount)
+
+// 1299 → "R 1 299", for price ranges and filters
+export const formatWholePrice = (amount) => wholeCurrency.format(amount)
 
 // 8900 → "8.9k"
 export const formatCount = (count) => compact.format(count).toLowerCase()

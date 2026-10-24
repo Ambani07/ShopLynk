@@ -25,6 +25,13 @@ const router = createRouter({
       component: () => import('../views/ProductView.vue'),
     },
     {
+      // The home page brand carousel links to /brands/…; everything else to /shops/…
+      path: '/shops/:slug',
+      alias: '/brands/:slug',
+      name: 'shop',
+      component: () => import('../views/ShopView.vue'),
+    },
+    {
       path: '/cart',
       name: 'cart',
       component: () => import('../views/CartView.vue'),

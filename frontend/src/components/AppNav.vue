@@ -1,9 +1,11 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { usePageThemeStore } from '@/stores/pageTheme'
 
 const route = useRoute()
 const auth = useAuthStore()
+const theme = usePageThemeStore()
 
 const items = [
   {
@@ -35,11 +37,25 @@ const items = [
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-gray-200 bg-canvas">
+  <header
+    :class="[
+      'sticky top-0 z-40 border-b transition-colors',
+      theme.tone('border-gray-200 bg-canvas', 'border-white/15 text-white'),
+    ]"
+    :style="theme.background && { backgroundColor: theme.background }"
+  >
     <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
       <RouterLink to="/" aria-label="SupLynk home" class="shrink-0">
-        <img src="/suplynk-icon-transparent.png" alt="" class="h-9 w-auto md:hidden" />
-        <img src="/suplynk-logo-transparent.png" alt="" class="hidden h-8 w-auto md:block" />
+        <img
+          src="/suplynk-icon-transparent.png"
+          alt=""
+          :class="['h-9 w-auto md:hidden', theme.tone('', 'brightness-0 invert')]"
+        />
+        <img
+          src="/suplynk-logo-transparent.png"
+          alt=""
+          :class="['hidden h-8 w-auto md:block', theme.tone('', 'brightness-0 invert')]"
+        />
       </RouterLink>
 
       <nav class="hidden items-center gap-10 md:flex">
@@ -51,7 +67,9 @@ const items = [
           :title="item.label"
           :class="[
             'transition-colors',
-            route.path === item.to ? 'text-black' : 'text-gray-400 hover:text-gray-600',
+            route.path === item.to
+              ? theme.tone('text-black', 'text-white')
+              : theme.tone('text-gray-400 hover:text-gray-600', 'text-white/60 hover:text-white'),
           ]"
         >
           <svg viewBox="0 0 24 24" class="size-6" fill="currentColor" fill-rule="evenodd">
@@ -64,11 +82,17 @@ const items = [
         v-if="auth.user"
         type="button"
         title="Sign out"
-        class="flex shrink-0 flex-col items-center gap-0.5 text-xs text-gray-700 transition-colors hover:text-gray-900"
+        :class="[
+          'flex shrink-0 flex-col items-center gap-0.5 text-xs transition-colors',
+          theme.tone('text-gray-700 hover:text-gray-900', 'text-white/80 hover:text-white'),
+        ]"
         @click="auth.signOut()"
       >
         <span
-          class="flex size-8 items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white"
+          :class="[
+            'flex size-8 items-center justify-center rounded-full text-sm font-bold',
+            theme.tone('bg-gray-900 text-white', 'bg-white text-gray-900'),
+          ]"
           aria-hidden="true"
         >
           {{ auth.user.name.charAt(0).toUpperCase() }}
@@ -78,7 +102,11 @@ const items = [
       <RouterLink
         v-else
         to="/sign-in"
-        class="flex shrink-0 flex-col items-center gap-0.5 text-xs text-gray-400 transition-colors hover:text-gray-600"
+        aria-label="Sign in"
+        :class="[
+          'flex shrink-0 flex-col items-center gap-0.5 text-xs transition-colors',
+          theme.tone('text-gray-400 hover:text-gray-600', 'text-white/60 hover:text-white'),
+        ]"
       >
         <svg viewBox="0 0 24 24" class="size-8" fill="currentColor">
           <path
@@ -90,7 +118,11 @@ const items = [
   </header>
 
   <nav
-    class="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/90 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_16px_rgba(0,0,0,0.04)] backdrop-blur md:hidden"
+    :class="[
+      'fixed inset-x-0 bottom-0 z-40 border-t pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_16px_rgba(0,0,0,0.04)] backdrop-blur transition-colors md:hidden',
+      theme.tone('border-gray-200 bg-white/90', 'border-white/15'),
+    ]"
+    :style="theme.background && { backgroundColor: theme.background }"
   >
     <ul class="grid h-20 grid-cols-5">
       <li v-for="item in items" :key="item.to">
@@ -99,13 +131,15 @@ const items = [
           :aria-label="item.label"
           :class="[
             'flex h-full items-center justify-center transition-colors',
-            route.path === item.to ? 'text-black' : 'text-gray-400 active:text-gray-600',
+            route.path === item.to
+              ? theme.tone('text-black', 'text-white')
+              : theme.tone('text-gray-400 active:text-gray-600', 'text-white/60 active:text-white'),
           ]"
         >
           <span
             :class="[
               'flex h-11 w-16 items-center justify-center rounded-full transition-colors',
-              route.path === item.to && 'bg-gray-200/70',
+              route.path === item.to && theme.tone('bg-gray-200/70', 'bg-white/20'),
             ]"
           >
             <svg viewBox="0 0 24 24" class="size-8" fill="currentColor" fill-rule="evenodd">
