@@ -1,5 +1,7 @@
-// Product lookup for the product page: every sample product (category pages and deals)
-// with its category and shop. Shops for category products are built from brand names.
+// Product and shop lookup: every sample product (category pages and deals) with its
+// category and shop, and every shop with its products and page theme.
+// Shops for category products are built from brand names.
+import { brandSections } from './brands'
 import { dealShops } from './deals'
 import { browseCategories } from './explore'
 import { categoryProducts } from './products'
@@ -24,6 +26,23 @@ const shopColors = [
   'bg-orange-700',
 ]
 
+// Muted page colours for shops without a brand colour of their own.
+const pageColors = [
+  '#5b4450',
+  '#3f4f5f',
+  '#4a5a45',
+  '#6b4a3a',
+  '#3e3a5c',
+  '#2f5050',
+  '#5a3f2f',
+  '#4b4b55',
+]
+
+// Brands from the home page carousel keep their slug, colour and wordmark style.
+const carouselBrands = new Map(
+  brandSections.flatMap((section) => section.brands).map((brand) => [brand.name, brand]),
+)
+
 // Shop rating: the review-weighted average of its products.
 const rate = (shop, products) => {
   const rated = products.filter((p) => p.reviews)
@@ -32,9 +51,30 @@ const rate = (shop, products) => {
   return { ...shop, rating: Math.round(rating * 10) / 10 || undefined, reviews }
 }
 
+// The icon most of a shop's products use, for the page's background art.
+const commonIcon = (products) => {
+  const counts = new Map()
+  for (const { icon } of products) counts.set(icon, (counts.get(icon) ?? 0) + 1)
+  return [...counts].sort((a, b) => b[1] - a[1])[0]?.[0]
+}
+
+const themeFor = (shop, products) => {
+  const brand = carouselBrands.get(shop.name)
+  return {
+    background: brand?.accent ?? pageColors[hash(shop.slug) % pageColors.length],
+    wordmark: brand?.wordmark ?? 'text-5xl font-bold tracking-tight',
+    art: brand?.art ?? commonIcon(products),
+  }
+}
+
 const categoryOf = (slug) => browseCategories.find((c) => c.slug === slug)
 
 const entries = new Map()
+const shops = new Map()
+
+const addShop = (shop, products) => {
+  shops.set(shop.slug, { shop, products, theme: themeFor(shop, products) })
+}
 
 const byBrand = new Map()
 for (const [category, products] of Object.entries(categoryProducts)) {
@@ -44,22 +84,26 @@ for (const [category, products] of Object.entries(categoryProducts)) {
   }
 }
 for (const [brand, items] of byBrand) {
-  const slug = slugify(brand)
+  const slug = carouselBrands.get(brand)?.slug ?? slugify(brand)
+  const products = items.map((item) => item.product)
   const shop = rate(
     { slug, name: brand, color: shopColors[hash(slug) % shopColors.length] },
-    items.map((item) => item.product),
+    products,
   )
+  addShop(shop, products)
   for (const { product, category } of items) {
     entries.set(product.slug, { product, category: categoryOf(category), shop })
   }
 }
 
-for (const { products, ...dealShop } of dealShops) {
+for (const { products: dealProducts, ...dealShop } of dealShops) {
+  const products = dealProducts.map((product) => ({ ...product, brand: dealShop.name }))
   const shop = rate(dealShop, products)
+  addShop(shop, products)
   for (const product of products) {
     if (entries.has(product.slug)) continue
     entries.set(product.slug, {
-      product: { ...product, brand: shop.name },
+      product,
       category: categoryOf(dealCategories[shop.slug]),
       shop,
     })
@@ -68,6 +112,12 @@ for (const { products, ...dealShop } of dealShops) {
 
 // slug → { product, category?, shop }, or undefined
 export const findProduct = (slug) => entries.get(slug)
+
+// slug → { shop, products, theme: { background, wordmark, art } }, or undefined
+export const findShop = (slug) => shops.get(slug)
+
+// Sample stock: a stable one in seven products is sold out until real stock data exists.
+export const isInStock = (product) => hash(`stock:${product.slug}`) % 7 !== 0
 
 // Other products from the same category: same subcategory first, then the rest.
 export const relatedProducts = (slug, limit = 12) => {

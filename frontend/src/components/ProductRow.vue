@@ -10,8 +10,11 @@ const props = defineProps({
   // Link for the default header (plain heading without one); unused with the `header` slot.
   to: { type: String, default: '' },
   products: { type: Array, required: true },
-  // Smaller cards and tighter padding, for rows inside a panel.
+  // Tighter padding for rows inside a panel; `compact` also uses smaller cards.
+  inset: Boolean,
   compact: Boolean,
+  // Light text, for rows on a dark background.
+  onDark: Boolean,
 })
 
 const { track, canPrev, canNext, update, scroll } = useScrollRow()
@@ -29,7 +32,7 @@ watch(
 </script>
 
 <template>
-  <section :class="compact ? '' : 'mx-auto max-w-[110rem] py-6'" :aria-label="title">
+  <section :class="inset || compact ? '' : 'mx-auto max-w-[110rem] py-6'" :aria-label="title">
     <slot name="header">
       <RouterLink
         v-if="to"
@@ -49,7 +52,7 @@ watch(
         ref="track"
         :class="[
           'flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none]',
-          compact
+          inset || compact
             ? 'scroll-px-5 px-5 sm:scroll-px-6 sm:px-6'
             : 'scroll-px-4 px-4 md:scroll-px-10 md:px-10',
         ]"
@@ -63,7 +66,7 @@ watch(
             compact ? 'w-[40vw] max-w-48 sm:w-48' : 'w-[44vw] max-w-68 sm:w-68',
           ]"
         >
-          <ProductCard :product="product" />
+          <ProductCard :product="product" :on-dark="onDark" />
         </li>
       </ul>
 

@@ -14,13 +14,13 @@ export const dealShops = [
   {
     slug: 'cubby-bear',
     name: 'Cubby Bear',
-    discount: 25,
+    discount: 450,
     color: 'bg-gray-900',
     products: [
       {
         slug: 'holiday-boxer-briefs',
         name: "Boy's Holiday Boxer Brief Underwear 3-Pack",
-        price: 29,
+        price: 519,
         rating: 5,
         reviews: 1,
         icon: icons.shorts,
@@ -29,7 +29,7 @@ export const dealShops = [
       {
         slug: 'cookie-boxer-briefs',
         name: "Boy's Boxer Brief Cookie Bamboo Underwear 3-Pack",
-        price: 29,
+        price: 519,
         rating: 5,
         reviews: 2,
         icon: icons.shorts,
@@ -38,14 +38,14 @@ export const dealShops = [
       {
         slug: 'ocean-boxer-briefs',
         name: "Boys' Boxer Brief Bamboo Underwear 3-Pack",
-        price: 29,
+        price: 519,
         icon: icons.shorts,
         tint: 'teal',
       },
       {
         slug: 'blocks-boxer-briefs',
         name: "Pixel Blocks Bamboo Boys' Boxer Brief 3-Pack",
-        price: 29,
+        price: 519,
         rating: 4.9,
         reviews: 13,
         icon: icons.shorts,
@@ -54,7 +54,7 @@ export const dealShops = [
       {
         slug: 'house-pride-boxer-briefs',
         name: "House Pride Boy's Boxer Brief 3-Pack",
-        price: 29,
+        price: 519,
         rating: 4.6,
         reviews: 7,
         icon: icons.shorts,
@@ -63,7 +63,7 @@ export const dealShops = [
       {
         slug: 'superhero-boxer-briefs',
         name: "Superhero Bamboo Boy's Boxer Brief 3-Pack",
-        price: 29,
+        price: 519,
         rating: 5,
         reviews: 3,
         icon: icons.shorts,
@@ -74,14 +74,14 @@ export const dealShops = [
   {
     slug: 'rooted-remedies',
     name: 'Rooted Remedies',
-    discount: 20,
+    discount: 360,
     color: 'bg-green-900',
     products: [
       {
         slug: 'sea-moss-clear-airways',
         name: 'Sea Moss 16-In-1 Gummies To Clear Airways',
-        price: 39.99,
-        originalPrice: 59.99,
+        price: 719,
+        originalPrice: 1079,
         rating: 3.6,
         reviews: 1200,
         icon: icons.jar,
@@ -90,8 +90,8 @@ export const dealShops = [
       {
         slug: 'sea-moss-daily',
         name: 'Sea Moss 16-In-1 Gummies',
-        price: 39.99,
-        originalPrice: 59.99,
+        price: 719,
+        originalPrice: 1079,
         rating: 4.6,
         reviews: 10900,
         icon: icons.jar,
@@ -100,8 +100,8 @@ export const dealShops = [
       {
         slug: 'sea-moss-joint-relief',
         name: 'Sea Moss Joint Relief Gummies',
-        price: 39.99,
-        originalPrice: 59.99,
+        price: 719,
+        originalPrice: 1079,
         rating: 4.4,
         reviews: 2300,
         icon: icons.jar,
@@ -110,8 +110,8 @@ export const dealShops = [
       {
         slug: 'sea-moss-joint-comfort',
         name: 'Sea Moss Gummies For Joint Comfort',
-        price: 39.99,
-        originalPrice: 49.99,
+        price: 719,
+        originalPrice: 899,
         rating: 4.5,
         reviews: 880,
         icon: icons.jar,
@@ -120,8 +120,8 @@ export const dealShops = [
       {
         slug: 'sea-moss-summer-sale',
         name: 'Summer Sale! - Sea Moss 16-In-1 Gummies',
-        price: 39.99,
-        originalPrice: 59.99,
+        price: 719,
+        originalPrice: 1079,
         rating: 4.7,
         reviews: 634,
         icon: icons.jar,
@@ -130,8 +130,8 @@ export const dealShops = [
       {
         slug: 'sea-moss-heart',
         name: 'Sea Moss 16-In-1 Gummies - For Blood Pressure',
-        price: 39.99,
-        originalPrice: 59.99,
+        price: 719,
+        originalPrice: 1079,
         rating: 4.8,
         reviews: 47,
         icon: icons.jar,
@@ -142,14 +142,14 @@ export const dealShops = [
   {
     slug: 'morning-ritual',
     name: 'Morning Ritual',
-    discount: 30,
+    discount: 540,
     color: 'bg-amber-800',
     products: [
       {
         slug: 'house-blend-beans',
         name: 'House Blend Whole Bean Coffee 2 lb',
-        price: 24.5,
-        originalPrice: 35,
+        price: 439,
+        originalPrice: 629,
         rating: 4.8,
         reviews: 5400,
         icon: icons.cup,
@@ -158,8 +158,8 @@ export const dealShops = [
       {
         slug: 'cold-brew-concentrate',
         name: 'Cold Brew Concentrate',
-        price: 13.99,
-        originalPrice: 19.99,
+        price: 249,
+        originalPrice: 359,
         rating: 4.7,
         reviews: 2100,
         icon: icons.bottle,
@@ -168,8 +168,8 @@ export const dealShops = [
       {
         slug: 'pour-over-kettle',
         name: 'Gooseneck Pour-Over Kettle',
-        price: 48.99,
-        originalPrice: 69.99,
+        price: 879,
+        originalPrice: 1259,
         rating: 4.9,
         reviews: 1300,
         icon: icons.kettle,
@@ -178,8 +178,8 @@ export const dealShops = [
       {
         slug: 'ceramic-mug-set',
         name: 'Stoneware Mug Set of 4',
-        price: 27.99,
-        originalPrice: 39.99,
+        price: 499,
+        originalPrice: 719,
         rating: 4.6,
         reviews: 760,
         icon: icons.cup,
@@ -188,8 +188,8 @@ export const dealShops = [
       {
         slug: 'vanilla-syrup',
         name: 'Madagascar Vanilla Syrup',
-        price: 9.79,
-        originalPrice: 13.99,
+        price: 179,
+        originalPrice: 249,
         rating: 4.5,
         reviews: 3200,
         icon: icons.sauce,
@@ -198,8 +198,8 @@ export const dealShops = [
       {
         slug: 'matcha-starter-kit',
         name: 'Matcha Starter Kit',
-        price: 34.99,
-        originalPrice: 49.99,
+        price: 629,
+        originalPrice: 899,
         rating: 4.7,
         reviews: 410,
         icon: icons.jar,
@@ -210,14 +210,14 @@ export const dealShops = [
   {
     slug: 'glow-theory',
     name: 'Glow Theory',
-    discount: 15,
+    discount: 270,
     color: 'bg-rose-700',
     products: [
       {
         slug: 'dew-drops-serum',
         name: 'Dew Drops Hydrating Serum',
-        price: 29.75,
-        originalPrice: 35,
+        price: 539,
+        originalPrice: 629,
         rating: 4.7,
         reviews: 8900,
         icon: icons.dropper,
@@ -226,8 +226,8 @@ export const dealShops = [
       {
         slug: 'cloud-moisturizer',
         name: 'Cloud Whip Moisturizer',
-        price: 33.15,
-        originalPrice: 39,
+        price: 599,
+        originalPrice: 699,
         rating: 4.8,
         reviews: 6100,
         icon: icons.jar,
@@ -236,8 +236,8 @@ export const dealShops = [
       {
         slug: 'tinted-lip-balm',
         name: 'Tinted Lip Balm Trio',
-        price: 20.4,
-        originalPrice: 24,
+        price: 369,
+        originalPrice: 429,
         rating: 4.6,
         reviews: 2700,
         icon: icons.tube,
@@ -246,8 +246,8 @@ export const dealShops = [
       {
         slug: 'gentle-cleanser',
         name: 'Gentle Gel Cleanser',
-        price: 18.7,
-        originalPrice: 22,
+        price: 339,
+        originalPrice: 399,
         rating: 4.7,
         reviews: 4300,
         icon: icons.bottle,
@@ -256,8 +256,8 @@ export const dealShops = [
       {
         slug: 'sunscreen-spf50',
         name: 'Invisible Sunscreen SPF 50',
-        price: 28.05,
-        originalPrice: 33,
+        price: 499,
+        originalPrice: 589,
         rating: 4.8,
         reviews: 12400,
         icon: icons.tube,
@@ -266,8 +266,8 @@ export const dealShops = [
       {
         slug: 'body-mist',
         name: 'Coconut Vanilla Body Mist',
-        price: 21.25,
-        originalPrice: 25,
+        price: 379,
+        originalPrice: 449,
         rating: 4.5,
         reviews: 950,
         icon: icons.perfume,

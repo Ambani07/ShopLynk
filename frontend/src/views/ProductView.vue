@@ -7,7 +7,7 @@ import ProductRow from '@/components/ProductRow.vue'
 import ProductReviews from '@/components/ProductReviews.vue'
 import ShopAvatar from '@/components/ShopAvatar.vue'
 import StarRating from '@/components/StarRating.vue'
-import { findProduct, relatedProducts } from '@/data/catalog'
+import { findProduct, isInStock, relatedProducts } from '@/data/catalog'
 import { productDetails } from '@/data/productDetails'
 import { useCartStore } from '@/stores/cart'
 import { formatCount, formatPrice } from '@/utils/format'
@@ -21,6 +21,7 @@ const product = computed(() => entry.value?.product)
 const shop = computed(() => entry.value?.shop)
 const details = computed(() => entry.value && productDetails(entry.value))
 const related = computed(() => relatedProducts(route.params.slug))
+const inStock = computed(() => product.value && isInStock(product.value))
 const reviewsSection = useTemplateRef('reviewsSection')
 
 const size = ref(null)
@@ -221,12 +222,14 @@ const softButton =
         <div class="mt-6 space-y-3">
           <button
             type="button"
-            class="block h-12 w-full rounded-full bg-[#5433eb] font-semibold text-white transition-colors hover:bg-[#4526d9]"
+            :disabled="!inStock"
+            class="block h-12 w-full rounded-full bg-[#5433eb] font-semibold text-white transition-colors hover:bg-[#4526d9] disabled:bg-gray-300 disabled:text-gray-600"
             @click="addToCart"
           >
-            Add to cart
+            {{ inStock ? 'Add to cart' : 'Sold out' }}
           </button>
           <button
+            v-if="inStock"
             type="button"
             class="block h-12 w-full rounded-full bg-gray-900 font-semibold text-white transition-colors hover:bg-gray-700"
             @click="buyNow"

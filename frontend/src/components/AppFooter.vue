@@ -1,5 +1,12 @@
 <script setup>
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { usePageThemeStore } from '@/stores/pageTheme'
+
+const theme = usePageThemeStore()
+const linkTone = computed(() =>
+  theme.tone('text-gray-700 hover:text-gray-900', 'text-white/75 hover:text-white'),
+)
 
 // Most of these pages don't exist yet; `href` marks external links.
 const columns = [
@@ -51,17 +58,34 @@ const stores = [
 </script>
 
 <template>
-  <footer class="border-t border-gray-200 bg-canvas">
+  <footer
+    :class="[
+      'border-t transition-colors',
+      theme.tone('border-gray-200 bg-canvas', 'border-white/15 text-white'),
+    ]"
+    :style="theme.background && { backgroundColor: theme.background }"
+  >
     <div
       class="mx-auto flex max-w-[110rem] flex-col gap-12 px-4 py-12 md:flex-row md:justify-between md:px-10 md:py-10"
     >
       <div class="flex flex-col gap-10 md:justify-between">
         <div>
-          <div class="flex size-20 items-center justify-center rounded-2xl bg-gray-900 sm:size-24">
+          <div
+            :class="[
+              'flex size-20 items-center justify-center rounded-2xl sm:size-24',
+              theme.tone('bg-gray-900', 'bg-black/25'),
+            ]"
+          >
             <img src="/suplynk-icon-transparent.png" alt="" class="h-12 w-auto invert" />
           </div>
-          <img src="/suplynk-logo-transparent.png" alt="SupLynk" class="mt-6 h-9 w-auto" />
-          <p class="mt-3 text-sm text-gray-500">Shopping designed around you.</p>
+          <img
+            src="/suplynk-logo-transparent.png"
+            alt="SupLynk"
+            :class="['mt-6 h-9 w-auto', theme.tone('', 'brightness-0 invert')]"
+          />
+          <p :class="['mt-3 text-sm', theme.tone('text-gray-500', 'text-white/70')]">
+            Shopping designed around you.
+          </p>
         </div>
 
         <div class="flex gap-3">
@@ -69,7 +93,13 @@ const stores = [
             v-for="store in stores"
             :key="store.label"
             :href="store.href"
-            class="flex h-10 items-center gap-2 rounded-lg border border-gray-900 px-3 text-gray-900 transition-colors hover:bg-gray-100"
+            :class="[
+              'flex h-10 items-center gap-2 rounded-lg border px-3 transition-colors',
+              theme.tone(
+                'border-gray-900 text-gray-900 hover:bg-gray-100',
+                'border-white text-white hover:bg-white/10',
+              ),
+            ]"
           >
             <svg viewBox="0 0 24 24" class="size-5" fill="currentColor" aria-hidden="true">
               <path :d="store.icon" />
@@ -87,7 +117,9 @@ const stores = [
         aria-label="Footer"
       >
         <div v-for="column in columns" :key="column.title">
-          <h2 class="text-sm font-semibold text-gray-900">{{ column.title }}</h2>
+          <h2 :class="['text-sm font-semibold', theme.tone('text-gray-900', 'text-white')]">
+            {{ column.title }}
+          </h2>
           <ul class="mt-5 space-y-3.5">
             <li v-for="link in column.links" :key="link.label">
               <a
@@ -95,15 +127,11 @@ const stores = [
                 :href="link.href"
                 target="_blank"
                 rel="noopener"
-                class="text-sm text-gray-700 hover:text-gray-900 hover:underline"
+                :class="['text-sm hover:underline', linkTone]"
               >
                 {{ link.label }}
               </a>
-              <RouterLink
-                v-else
-                :to="link.to"
-                class="text-sm text-gray-700 hover:text-gray-900 hover:underline"
-              >
+              <RouterLink v-else :to="link.to" :class="['text-sm hover:underline', linkTone]">
                 {{ link.label }}
               </RouterLink>
             </li>
