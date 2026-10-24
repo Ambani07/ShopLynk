@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/CategoryView.vue'),
     },
     {
+      path: '/products/:slug',
+      name: 'product',
+      component: () => import('../views/ProductView.vue'),
+    },
+    {
       path: '/cart',
       name: 'cart',
       component: () => import('../views/CartView.vue'),
@@ -50,6 +55,14 @@ const router = createRouter({
       component: () => import('../views/ForgotPasswordView.vue'),
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition
+    // Leave room for the sticky header when jumping to an anchor like #reviews.
+    if (to.hash) return { el: to.hash, top: 96, behavior: 'smooth' }
+    // Switching subcategory chips keeps your place on the category page.
+    if (to.name === 'category' && from.name === 'category') return false
+    return { top: 0 }
+  },
 })
 
 export default router
