@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import('../views/ExploreView.vue'),
     },
     {
+      path: '/categories/:slug/:sub?',
+      name: 'category',
+      component: () => import('../views/CategoryView.vue'),
+    },
+    {
       path: '/cart',
       name: 'cart',
       component: () => import('../views/CartView.vue'),
